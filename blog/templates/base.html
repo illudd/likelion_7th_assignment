@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IF=edge">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %}</title> 
+    {% block extrahead %}
+    {% endblock extrahead %}
+
+</head>
+
+<body>
+    <a href="{% url 'home' %}">
+            <h1 class="title">BLOG 홈으로</h1>
+    </a>
+    {% block content %} {% endblock %}
+</body>
+
+</html>
+
+
+

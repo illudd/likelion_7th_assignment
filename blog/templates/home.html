@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+밍정 블로그 home
+{% endblock title %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock extrahead %}
+
+{% block content %}
+
+<div class="center">
+    <h1>LIKELION 12 Blog Project</h1>
+</div>
+
+<div class="add">
+    <a href="{% url 'new'%}">새 글 작성하기</a>
+</div>
+
+<div id="container">
+    <div class="image">
+        <img src="{% static 'imoticon.png'%}" alt="" width="150" height="150" class="logo">
+    </div>
+
+<div class="contents" id="boxs">
+    {% for blog in page_obj %}
+    <a href="{%url 'detail' blog.id%}">
+        <div class="content">
+            <h2>{{blog.title}}</h2>
+            <p>{{blog.summary}}</p>
+            <p>{{blog.created_at}}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+<div class="button">
+    <span>
+        {% if page_obj.has_previous %}
+        <div class="button_1">
+            <a href="?page=1">처음으로</a>
+        </div>
+    
+        <div class="button_2">
+            <a href="?page={{ page_obj.has_previous_page_number }}">이전</a>
+        </div>
+       
+        {% endif %}
+
+        <div class="page_num">
+            <p>{{page_obj.number}}</p>
+            <p>  /  </p>
+            <p>{{ page_obj.paginator.num_pages }}</p>
+        </div>
+        
+
+        {% if page_obj.has_next %}
+        <div class="button_1">
+            <a href="?page={{ page_obj.next_page_number }}">다음</a>
+        </div>
+        <div class="button_2">
+            <a href="?page={{ page_obj.paginator.num_pages}}">마지막</a>
+        </div>
+    
+        {% endif %}
+
+        
+    </span>
+</div> 
+
+{% endblock content %}
